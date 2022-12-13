@@ -12,5 +12,21 @@ public class ExceptionHandler {
 		return new ResponseEntity<String>("Failed to Save User", HttpStatus.CONFLICT);
 	}
 	
+	@org.springframework.web.bind.annotation.ExceptionHandler(EmailAllReadyRegisteredException.class)
+	public ResponseEntity<String> emailAllReadyRegistered(){
+		return new ResponseEntity<String>("Email all ready Registered", HttpStatus.CONFLICT);
+	}
+	
+	@org.springframework.web.bind.annotation.ExceptionHandler(InvalidEmailException.class)
+	public ResponseEntity<String> invalidEmail(){
+		return new ResponseEntity<String>("Email out of Range", HttpStatus.CONFLICT);
+	}
+	
+	@org.springframework.web.bind.annotation.ExceptionHandler(PasswordOutOfRangeException.class)
+	public ResponseEntity<String> passwordOutOfrange(){
+		return new ResponseEntity<String>("password out of Range", HttpStatus.CONFLICT);
+	}
+	
+	
 	
 }

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.signup.dto.UserDTO;
+import com.signup.exceptions.EmailAllReadyRegisteredException;
+import com.signup.exceptions.InvalidEmailException;
+import com.signup.exceptions.PasswordOutOfRangeException;
 import com.signup.exceptions.UserNotSaved;
 import com.signup.service.SignUpService;
 
@@ -18,7 +21,7 @@ public class SignUpController {
 	SignUpService sServ;
 	
 	@PostMapping("/signup")
-	public ResponseEntity<String> signup(@RequestBody UserDTO user)throws UserNotSaved {
+	public ResponseEntity<String> signup(@RequestBody UserDTO user)throws UserNotSaved, PasswordOutOfRangeException, InvalidEmailException, EmailAllReadyRegisteredException {
 		if(sServ.saveUser(user)) {
 			return new ResponseEntity<String>("Sucess", HttpStatus.ACCEPTED);
 		}else {
